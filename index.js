@@ -3,6 +3,7 @@ const axios = require("axios");
 const inquirer = require("inquirer");
 const util = require("util");
 const generateHTML = require('./generateHTML');
+// const path = require path?
 
 const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -14,32 +15,37 @@ function promptUser() {
        message: "What is your GitHub username?"
      },
      {
-       type: "input",
+       type: "list",
+       message: "What is your favorite color?",
        name: "FavColor",
-       message: "What is your favorite color?"
-     },
+       choices: [
+           "green",
+           "blue",
+           "pink",
+           "red"
+       ]
+     }
    ]);
- }
- promptUser()
-
-  .then(function(data) {
-    const html = generateHTML(data);
-
-    return writeFileAsync("index.html", html);
-  })
-  .then(function() {
-    console.log("Successfully wrote to index.html");
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
-
-function writeToFile(fileName, data) {
 }
 
 
-// function init() {
-// init();
+function init() {
+    promptUser()
+    .then(function(data) {
+        const html = generateHTML(data);
+    
+    
+        function writeToFile(fileName, data);
+      })
+      .then(function() {
+        console.log("Successfully wrote to index.html");
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+
+}
+init();
 
 
 
